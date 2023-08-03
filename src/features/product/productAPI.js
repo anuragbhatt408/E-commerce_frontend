@@ -8,11 +8,23 @@ export function fetchAllProducts() {
   });
 }
 
-export function fetchProductByFilter(filter) {
+export function fetchProductByFilter(filter, sort) {
+  // filter = {"category":["smartphone","laptops"]}
+  // sort = {_sort:"price",_order="desc"}
+
+  // TODO : on server we will support multi values in filter
   let queryString = "";
   for (let key in filter) {
-    queryString += `${key}=${filter[key]}&`;
+    const categoryValues = filter[key];
+    if (categoryValues.length) {
+      const lastCategoryValue = categoryValues[categoryValues.length - 1];
+      queryString += `${key}=${lastCategoryValue}&`;
+    }
   }
+  for (let key in sort) {
+    queryString += `${key}=${sort[key]}&`;
+  }
+
   return new Promise(async (resolve) => {
     // We will not hard-code things here
     const response = await fetch(
