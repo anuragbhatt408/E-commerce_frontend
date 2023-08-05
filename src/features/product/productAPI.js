@@ -8,7 +8,7 @@ export function fetchAllProducts() {
   });
 }
 
-export function fetchProductByFilter(filter, sort, pagination) {
+export function fetchProductsByFilter(filter, sort, pagination) {
   // filter = {"category":["smartphone","laptops"]}
   // sort = {_sort:"price",_order="desc"}
   // // pagination = {_page:1,_limit=10}
@@ -40,6 +40,14 @@ export function fetchProductByFilter(filter, sort, pagination) {
     resolve({ data: { products: data, totalItems: +totalItems } });
   });
 }
+
+export const fetchProductById = (id) => {
+  return new Promise(async (resolve) => {
+    const response = await fetch(`http://localhost:8082/products/` + id);
+    const data = await response.json();
+    resolve({ data });
+  });
+};
 
 export const fetchCategories = () => {
   return new Promise(async (resolve) => {

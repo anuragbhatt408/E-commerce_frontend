@@ -1,17 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   fetchAllProducts,
-  fetchProductByFilter,
-  fetchCategories,
+  fetchProductsByFilter,
   fetchBrands,
+  fetchCategories,
+  fetchProductById,
 } from "./productAPI";
 
 const initialState = {
   products: [],
-  categories: [],
   brands: [],
+  categories: [],
   status: "idle",
   totalItems: 0,
+  selectedProduct: null,
 };
 
 export const fetchAllProductsAsync = createAsyncThunk(
@@ -23,18 +25,20 @@ export const fetchAllProductsAsync = createAsyncThunk(
   }
 );
 
-export const fetchProductsByFiltersAsync = createAsyncThunk(
-  "product/fetchProductByFilterAsync",
-  async ({ filter, sort, pagination }) => {
-    const response = await fetchProductByFilter(filter, sort, pagination);
+export const fetchAllProductByIdAsync = createAsyncThunk(
+  "product/fetchProductById",
+  async (id) => {
+    const response = await fetchProductById(id);
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
 
-export const fetchCategoriesAsync = createAsyncThunk(
-  "product/fetchCategories",
-  async () => {
-    const response = await fetchCategories();
+export const fetchProductsByFiltersAsync = createAsyncThunk(
+  "product/fetchProductByFilters",
+  async ({ filter, sort, pagination }) => {
+    const response = await fetchProductsByFilter(filter, sort, pagination);
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -43,6 +47,15 @@ export const fetchBrandsAsync = createAsyncThunk(
   "product/fetchBrands",
   async () => {
     const response = await fetchBrands();
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+export const fetchCategoriesAsync = createAsyncThunk(
+  "product/fetchCategories",
+  async () => {
+    const response = await fetchCategories();
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -85,13 +98,23 @@ export const productSlice = createSlice({
       .addCase(fetchCategoriesAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.categories = action.payload;
+      })
+      .addCase(fetchAllProductByIdAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchAllProductByIdAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.selectedProduct = action.payload;
       });
   },
 });
 
-export const { increment, decrement, incrementByAmount } = productSlice.actions;
+export const { increment } = productSlice.actions;
 
 export const selectAllProducts = (state) => state.product.products;
+export const selectBrands = (state) => state.product.brands;
+export const selectCategories = (state) => state.product.categories;
+export const selectProductById = (state) => state.product.selectedProduct;
 
 export const selectTotalItems = (state) => state.product.totalItems;
 
