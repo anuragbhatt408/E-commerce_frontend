@@ -1,55 +1,52 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const products = [
   {
     id: 1,
-    name: "Throwback Hip Bag",
-    href: "#",
-    color: "Salmon",
-    price: "$90.00",
+    name: 'Throwback Hip Bag',
+    href: '#',
+    color: 'Salmon',
+    price: '$90.00',
     quantity: 1,
     imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
+      'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
     imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
+      'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
   },
   {
     id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
+    name: 'Medium Stuff Satchel',
+    href: '#',
+    color: 'Blue',
+    price: '$32.00',
     quantity: 1,
     imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
+      'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
     imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
+      'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
+  // More products...
 ];
 
 const addresses = [
   {
-    name: "anurag",
-    street: "60 feet road",
-    city: "Indore",
-    pincode: 452005,
-    state: "M.P",
-    phone: 123456789,
+    name: 'John wick',
+    street: '11th Main',
+    city: 'Delhi',
+    pinCode: 110001,
+    state: 'Delhi',
+    phone: 12312321331,
   },
   {
-    name: "xyz",
-    street: "60 feet road",
-    city: "Delhi",
-    pincode: 452005,
-    state: "Delhi",
-    phone: 12345,
+    name: 'John Doe',
+    street: '15th Main',
+    city: 'Bangalore',
+    pinCode: 560034,
+    state: 'Karnataka',
+    phone: 123123123,
   },
 ];
-
-const Checkout = () => {
-  const [open, setOpen] = useState(true);
-
+function Checkout() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
@@ -57,7 +54,7 @@ const Checkout = () => {
           <form className="bg-white px-5 py-12 mt-12">
             <div className="space-y-12">
               <div className="border-b border-gray-900/10 pb-12">
-                <h2 className="text-xl font-semibold leading-7 text-gray-900">
+                <h2 className="text-2xl font-semibold leading-7 text-gray-900">
                   Personal Information
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -215,32 +212,32 @@ const Checkout = () => {
               </div>
 
               <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button
-                  type="button"
-                  className="text-sm font-semibold leading-6 text-gray-900"
-                >
-                  Reset
-                </button>
-                <button
-                  type="submit"
-                  className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Add Address
-                </button>
-              </div>
+              <button
+                type="button"
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                Reset
+              </button>
+              <button
+                type="submit"
+                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Add Address
+              </button>
+            </div>
 
               <div className="border-b border-gray-900/10 pb-12">
                 <h2 className="text-base font-semibold leading-7 text-gray-900">
-                  Address
+                Addresses
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-gray-600">
-                  Choose From Existing Address
+                  Choose from Existing addresses
                 </p>
                 <ul role="list">
                   {addresses.map((address) => (
                     <li
                       key={address.email}
-                      className="flex justify-between px-5 gap-x-6 py-5 border-solid border-2 "
+                      className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200"
                     >
                       <div className="flex gap-x-4">
                         <input
@@ -256,13 +253,13 @@ const Checkout = () => {
                             {address.street}
                           </p>
                           <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                            {address.pincode}
+                            {address.pinCode}
                           </p>
                         </div>
                       </div>
                       <div className="hidden sm:flex sm:flex-col sm:items-end">
                         <p className="text-sm leading-6 text-gray-900">
-                          Phone : {address.phone}
+                          Phone: {address.phone}
                         </p>
                         <p className="text-sm leading-6 text-gray-500">
                           {address.city}
@@ -271,10 +268,11 @@ const Checkout = () => {
                     </li>
                   ))}
                 </ul>
+
                 <div className="mt-10 space-y-10">
                   <fieldset>
                     <legend className="text-sm font-semibold leading-6 text-gray-900">
-                      Payment Method
+                      Payment Methods
                     </legend>
                     <p className="mt-1 text-sm leading-6 text-gray-600">
                       Choose One
@@ -305,7 +303,7 @@ const Checkout = () => {
                           htmlFor="card"
                           className="block text-sm font-medium leading-6 text-gray-900"
                         >
-                          Card Payments
+                          Card Payment
                         </label>
                       </div>
                     </div>
@@ -313,6 +311,8 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
+
+          
           </form>
         </div>
         <div className="lg:col-span-2">
@@ -354,8 +354,8 @@ const Checkout = () => {
                               Qty
                             </label>
                             <select>
-                              <option value={1}>1</option>
-                              <option value={2}>2</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
                             </select>
                           </div>
 
@@ -384,12 +384,12 @@ const Checkout = () => {
                 Shipping and taxes calculated at checkout.
               </p>
               <div className="mt-6">
-                <a
-                  href="#"
+                <Link
+                  to="/pay"
                   className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                 >
                   Pay and Order
-                </a>
+                </Link>
               </div>
               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                 <p>
@@ -411,5 +411,6 @@ const Checkout = () => {
       </div>
     </div>
   );
-};
+}
+
 export default Checkout;

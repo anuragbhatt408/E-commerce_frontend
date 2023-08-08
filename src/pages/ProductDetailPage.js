@@ -1,13 +1,13 @@
-import React from "react";
+import NavBar from "../features/navbar/Navbar";
 import ProductDetail from "../features/product/components/ProductDetail";
-import Navbar from "../features/navbar/Navbar";
-
-const ProductDetailPage = () => {
-  return (
-    <Navbar>
-      <ProductDetail />
-    </Navbar>
-  );
-};
+function ProductDetailPage() {
+    return ( 
+        <div>
+            <NavBar>
+                <ProductDetail></ProductDetail>
+            </NavBar>
+        </div>
+     );
+}
 
 export default ProductDetailPage;
